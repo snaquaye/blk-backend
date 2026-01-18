@@ -59,14 +59,18 @@
       "target": "api::genre.genre",
       "mappedBy": "article"
     },
-    "tags": {
-      "type": "component",
-      "component": "element.tag",
-      "repeatable": true,
-      "required": true
-    },
     "availableOn": {
       "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "articleType"
+            },
+            "Review Post"
+          ]
+        }
+      },
       "component": "element.available-on",
       "repeatable": true
     },
@@ -125,6 +129,15 @@
       "relation": "manyToOne",
       "target": "api::author.author",
       "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
+    },
+    "trailerLink": {
+      "type": "string"
     }
   }
 }

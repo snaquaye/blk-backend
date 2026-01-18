@@ -7,6 +7,20 @@ const authorData = {
   bio: 'Writer and curator celebrating Black culture through film, books, and lifestyle content.',
 };
 
+// Tags data
+const tagsData = [
+  { name: 'Featured', slug: 'featured' },
+  { name: 'Culture', slug: 'culture' },
+  { name: 'Film + TV', slug: 'film-tv' },
+  { name: 'Books', slug: 'books' },
+  { name: 'Music', slug: 'music' },
+  { name: 'Fashion', slug: 'fashion' },
+  { name: 'Art', slug: 'art' },
+  { name: 'History', slug: 'history' },
+  { name: 'Lifestyle', slug: 'lifestyle' },
+  { name: 'Reviews', slug: 'reviews' },
+];
+
 // Sample content blocks for Long Post articles
 const sampleContentBlocks = [
   {
@@ -354,7 +368,35 @@ async function seedAuthor(strapi: Core.Strapi): Promise<string> {
   return createdAuthor.documentId;
 }
 
-async function seedArticles(strapi: Core.Strapi, authorDocumentId: string) {
+async function seedTags(strapi: Core.Strapi): Promise<Map<string, string>> {
+  console.log('🌱 Seeding tags...');
+  
+  const tagDocumentIds = new Map<string, string>();
+  
+  for (const tag of tagsData) {
+    // Check if tag already exists
+    const existing = await strapi.documents('api::tag.tag').findFirst({
+      filters: { slug: tag.slug },
+    });
+    
+    if (existing) {
+      console.log(`  ⏭️  Tag "${tag.name}" already exists`);
+      tagDocumentIds.set(tag.slug, existing.documentId);
+    } else {
+      const createdTag = await strapi.documents('api::tag.tag').create({
+        data: tag,
+        status: 'published',
+      });
+      
+      console.log(`  ✅ Created tag: ${tag.name}`);
+      tagDocumentIds.set(tag.slug, createdTag.documentId);
+    }
+  }
+  
+  return tagDocumentIds;
+}
+
+async function seedArticles(strapi: Core.Strapi, authorDocumentId: string, tagDocumentIds: Map<string, string>) {
   console.log('🌱 Seeding articles...');
   
   for (const article of articles) {
@@ -375,10 +417,35 @@ async function seedArticles(strapi: Core.Strapi, authorDocumentId: string) {
         category: article.category,
         articleType: article.articleType,
         isFeaturedPost: article.isFeaturedPost,
-        tags: [{ tag: 'Featured' }, { tag: 'Culture' }],
         coverImage: [{ AlternateText: article.title }],
         author: authorDocumentId,
       };
+
+      // Assign tags based on category and type
+      const articleTags: string[] = [];
+      
+      // Add Featured tag for featured posts
+      if (article.isFeaturedPost && tagDocumentIds.has('featured')) {
+        articleTags.push(tagDocumentIds.get('featured')!);
+      }
+      
+      // Add category-based tag
+      if (article.category === 'Film + TV' && tagDocumentIds.has('film-tv')) {
+        articleTags.push(tagDocumentIds.get('film-tv')!);
+      } else if (article.category === 'Books' && tagDocumentIds.has('books')) {
+        articleTags.push(tagDocumentIds.get('books')!);
+      } else if (article.category === 'Culture' && tagDocumentIds.has('culture')) {
+        articleTags.push(tagDocumentIds.get('culture')!);
+      }
+      
+      // Add Reviews tag for Review Post articles
+      if (article.articleType === 'Review Post' && tagDocumentIds.has('reviews')) {
+        articleTags.push(tagDocumentIds.get('reviews')!);
+      }
+      
+      if (articleTags.length > 0) {
+        articleData.tags = articleTags;
+      }
 
       // Add content for Long Post articles
       if (article.articleType === 'Long Post' && article.content) {
@@ -480,8 +547,9 @@ export async function seed(strapi: Core.Strapi) {
   
   try {
     const authorDocumentId = await seedAuthor(strapi);
+    const tagDocumentIds = await seedTags(strapi);
     await deleteAllArticles(strapi);
-    await seedArticles(strapi, authorDocumentId);
+    await seedArticles(strapi, authorDocumentId, tagDocumentIds);
     await seedHomepage(strapi);
     
     console.log('\n✨ Seed completed successfully!\n');

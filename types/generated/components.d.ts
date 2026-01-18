@@ -152,19 +152,15 @@ export interface ElementReview extends Struct.ComponentSchema {
     displayName: 'Review';
   };
   attributes: {
-    amazoneLink: Schema.Attribute.String;
-    amazonPrimeLink: Schema.Attribute.String;
     blurb: Schema.Attribute.Text & Schema.Attribute.Required;
     finalReview: Schema.Attribute.String;
     genre: Schema.Attribute.String & Schema.Attribute.Required;
     initialReaction: Schema.Attribute.Text & Schema.Attribute.Required;
     literaryTropes: Schema.Attribute.Component<'element.literary-tropes', true>;
-    netflixLink: Schema.Attribute.String;
     rating: Schema.Attribute.String & Schema.Attribute.Required;
     reviewType: Schema.Attribute.Enumeration<['Book', 'Film  + TV']> &
       Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    waterstoneLink: Schema.Attribute.String;
   };
 }
 

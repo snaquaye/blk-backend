@@ -40,58 +40,6 @@
     },
     "finalReview": {
       "type": "string"
-    },
-    "waterstoneLink": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "reviewType"
-            },
-            "Book"
-          ]
-        }
-      }
-    },
-    "amazoneLink": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "reviewType"
-            },
-            "Book"
-          ]
-        }
-      }
-    },
-    "amazonPrimeLink": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "reviewType"
-            },
-            "Film  + TV"
-          ]
-        }
-      }
-    },
-    "netflixLink": {
-      "type": "string",
-      "conditions": {
-        "visible": {
-          "==": [
-            {
-              "var": "reviewType"
-            },
-            "Film  + TV"
-          ]
-        }
-      }
     }
   },
   "config": {}

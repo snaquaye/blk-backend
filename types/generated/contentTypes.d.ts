@@ -475,8 +475,8 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     review: Schema.Attribute.Component<'element.review', false>;
     shortDescription: Schema.Attribute.String;
     slug: Schema.Attribute.UID & Schema.Attribute.Required;
-    tags: Schema.Attribute.Component<'element.tag', true> &
-      Schema.Attribute.Required;
+    tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    trailerLink: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -716,7 +716,7 @@ export interface ApiPlateformPlateform extends Struct.CollectionTypeSchema {
       'api::plateform.plateform'
     > &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -751,6 +751,33 @@ export interface ApiSubscriptionSubscription
     SubscriptionStatus: Schema.Attribute.Enumeration<
       ['Subscribed', 'Unsubscribed']
     >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTagTag extends Struct.CollectionTypeSchema {
+  collectionName: 'tags';
+  info: {
+    displayName: 'Tag';
+    pluralName: 'tags';
+    singularName: 'tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articles: Schema.Attribute.Relation<'manyToMany', 'api::article.article'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::tag.tag'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1308,6 +1335,7 @@ declare module '@strapi/strapi' {
       'api::page.page': ApiPagePage;
       'api::plateform.plateform': ApiPlateformPlateform;
       'api::subscription.subscription': ApiSubscriptionSubscription;
+      'api::tag.tag': ApiTagTag;
       'api::watch-list.watch-list': ApiWatchListWatchList;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
