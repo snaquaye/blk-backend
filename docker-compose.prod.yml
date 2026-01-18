@@ -1,0 +1,62 @@
+version: '3.8'
+services:
+  everythingblk:
+    container_name: everythingblk
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    image: everythingblk:latest
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: everythingblkDB
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      NODE_ENV: production
+    volumes:
+      - ./public/uploads:/opt/app/public/uploads
+    ports:
+      - '1337:1337'
+    networks:
+      - everythingblk
+    depends_on:
+      everythingblkDB:
+        condition: service_healthy
+
+  everythingblkDB:
+    container_name: everythingblkDB
+    platform: linux/amd64
+    restart: unless-stopped
+    env_file: .env.production
+    image: postgres:14.5-alpine
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    volumes:
+      - everythingblk-data:/var/lib/postgresql/data/
+    ports:
+      - '5432:5432'
+    networks:
+      - everythingblk
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d ${DATABASE_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  everythingblk-data:
+
+networks:
+  everythingblk:
+    name: Everythingblk
+    driver: bridge
