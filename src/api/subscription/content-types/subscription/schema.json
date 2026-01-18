@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Email": {
+      "type": "email"
+    },
+    "FirstName": {
+      "type": "string"
+    },
+    "SubscriptionStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Subscribed",
+        "Unsubscribed"
+      ]
+    }
+  }
+}

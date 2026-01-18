@@ -1,0 +1,93 @@
+{
+  "collectionName": "components_element_film_tv_books_lists",
+  "info": {
+    "displayName": "Recommendation"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "ListType": {
+      "type": "enumeration",
+      "enum": [
+        "Book",
+        "Film + TV"
+      ]
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Blurb": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      },
+      "required": true
+    },
+    "MyThoughts": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      },
+      "required": true
+    },
+    "Content": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      },
+      "required": true
+    },
+    "TrailerLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      },
+      "required": true
+    },
+    "availableOn": {
+      "type": "component",
+      "component": "element.available-on",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

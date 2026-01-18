@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_navigation_page_titles",
+  "info": {
+    "displayName": "pageTitle"
+  },
+  "options": {},
+  "attributes": {
+    "pageTitle": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

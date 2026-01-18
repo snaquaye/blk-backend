@@ -1,0 +1,140 @@
+{
+  "collectionName": "components_element_list_items",
+  "info": {
+    "displayName": "ListItem"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "ListType": {
+      "type": "enumeration",
+      "enum": [
+        "Book",
+        "Film + TV"
+      ]
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "AmazonLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      }
+    },
+    "WaterstoneLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      }
+    },
+    "Blurb": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      },
+      "required": true
+    },
+    "MyThoughts": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Book"
+          ]
+        }
+      },
+      "required": true
+    },
+    "Content": {
+      "type": "text",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      },
+      "required": true
+    },
+    "AmazonPrimeLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      }
+    },
+    "Netflix": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      }
+    },
+    "TrailerLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ListType"
+            },
+            "Film + TV"
+          ]
+        }
+      },
+      "required": true
+    }
+  },
+  "config": {}
+}

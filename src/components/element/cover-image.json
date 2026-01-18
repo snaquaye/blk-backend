@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_element_cover_images",
+  "info": {
+    "displayName": "coverImage"
+  },
+  "options": {},
+  "attributes": {
+    "alternateText": {
+      "type": "string"
+    },
+    "imageSrc": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

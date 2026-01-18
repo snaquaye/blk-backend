@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_navigation_top_bars",
+  "info": {
+    "displayName": "topBar"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

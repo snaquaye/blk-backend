@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_navigation_links",
+  "info": {
+    "displayName": "link"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false
+    },
+    "type": {
+      "type": "enumeration",
+      "default": "Primary",
+      "enum": [
+        "Primary",
+        "Secondary",
+        "Ghost"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "showInMenu": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

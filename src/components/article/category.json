@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_article_categories",
+  "info": {
+    "displayName": "category"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "enumeration",
+      "enum": [
+        "Books",
+        "Culture",
+        "Film + TV"
+      ]
+    }
+  },
+  "config": {}
+}

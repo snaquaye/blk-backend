@@ -1,0 +1,130 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "articleTitle": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Books",
+        "Culture",
+        "Film + TV"
+      ]
+    },
+    "articleType": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Recommendation List",
+        "Long Post",
+        "Review Post"
+      ]
+    },
+    "coverImage": {
+      "type": "component",
+      "component": "element.cover-image",
+      "repeatable": true,
+      "required": true
+    },
+    "shortDescription": {
+      "type": "string"
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
+    },
+    "isFeaturedPost": {
+      "type": "boolean",
+      "default": false
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre",
+      "mappedBy": "article"
+    },
+    "tags": {
+      "type": "component",
+      "component": "element.tag",
+      "repeatable": true,
+      "required": true
+    },
+    "availableOn": {
+      "type": "component",
+      "component": "element.available-on",
+      "repeatable": true
+    },
+    "review": {
+      "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ArticleType"
+            },
+            "Review Post"
+          ]
+        }
+      },
+      "component": "element.review",
+      "repeatable": false
+    },
+    "recommendationList": {
+      "type": "component",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ArticleType"
+            },
+            "Recommendation List"
+          ]
+        }
+      },
+      "component": "element.film-tv-books-list",
+      "repeatable": true
+    },
+    "content": {
+      "type": "blocks",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "ArticleType"
+            },
+            "Long Post"
+          ]
+        }
+      }
+    },
+    "addToWatchlist": {
+      "type": "enumeration",
+      "enum": [
+        "Yes",
+        "No"
+      ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    }
+  }
+}

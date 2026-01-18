@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_element_available_ons",
+  "info": {
+    "displayName": "Available On"
+  },
+  "options": {},
+  "attributes": {
+    "plateform": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::plateform.plateform"
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "config": {}
+}

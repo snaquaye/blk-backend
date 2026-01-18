@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "currently_readings",
+  "info": {
+    "singularName": "currently-reading",
+    "pluralName": "currently-readings",
+    "displayName": "Currently Reading"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Author": {
+      "type": "string",
+      "required": true
+    },
+    "Cover": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "collectionName": "components_element_reviews",
+  "info": {
+    "displayName": "Review"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "reviewType": {
+      "type": "enumeration",
+      "required": true,
+      "enum": [
+        "Book",
+        "Film  + TV"
+      ]
+    },
+    "rating": {
+      "type": "string",
+      "required": true
+    },
+    "genre": {
+      "type": "string",
+      "required": true
+    },
+    "blurb": {
+      "type": "text",
+      "required": true
+    },
+    "literaryTropes": {
+      "type": "component",
+      "component": "element.literary-tropes",
+      "repeatable": true
+    },
+    "initialReaction": {
+      "type": "text",
+      "required": true
+    },
+    "finalReview": {
+      "type": "string"
+    },
+    "waterstoneLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "reviewType"
+            },
+            "Book"
+          ]
+        }
+      }
+    },
+    "amazoneLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "reviewType"
+            },
+            "Book"
+          ]
+        }
+      }
+    },
+    "amazonPrimeLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "reviewType"
+            },
+            "Film  + TV"
+          ]
+        }
+      }
+    },
+    "netflixLink": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "reviewType"
+            },
+            "Film  + TV"
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}
