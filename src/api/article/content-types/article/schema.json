@@ -16,6 +16,7 @@
     },
     "slug": {
       "type": "uid",
+      "targetField": "articleTitle",
       "required": true
     },
     "category": {
@@ -80,7 +81,7 @@
         "visible": {
           "==": [
             {
-              "var": "ArticleType"
+              "var": "articleType"
             },
             "Review Post"
           ]
@@ -95,7 +96,7 @@
         "visible": {
           "==": [
             {
-              "var": "ArticleType"
+              "var": "articleType"
             },
             "Recommendation List"
           ]
@@ -110,7 +111,7 @@
         "visible": {
           "==": [
             {
-              "var": "ArticleType"
+              "var": "articleType"
             },
             "Long Post"
           ]
@@ -137,7 +138,17 @@
       "inversedBy": "articles"
     },
     "trailerLink": {
-      "type": "string"
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "articleType"
+            },
+            "Review Post"
+          ]
+        }
+      }
     }
   }
 }

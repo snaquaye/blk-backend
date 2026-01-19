@@ -474,7 +474,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     >;
     review: Schema.Attribute.Component<'element.review', false>;
     shortDescription: Schema.Attribute.String;
-    slug: Schema.Attribute.UID & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'articleTitle'> & Schema.Attribute.Required;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
     trailerLink: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;

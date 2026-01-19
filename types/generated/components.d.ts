@@ -66,14 +66,16 @@ export interface ElementFilmTvBooksList extends Struct.ComponentSchema {
   };
   attributes: {
     availableOn: Schema.Attribute.Component<'element.available-on', true>;
-    Blurb: Schema.Attribute.Text & Schema.Attribute.Required;
-    Content: Schema.Attribute.Text & Schema.Attribute.Required;
-    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    blurb: Schema.Attribute.Text & Schema.Attribute.Required;
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    genres: Schema.Attribute.Relation<'oneToMany', 'api::genre.genre'>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
-    ListType: Schema.Attribute.Enumeration<['Book', 'Film + TV']>;
-    MyThoughts: Schema.Attribute.Text & Schema.Attribute.Required;
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
-    TrailerLink: Schema.Attribute.String & Schema.Attribute.Required;
+    listType: Schema.Attribute.Enumeration<['Book', 'Film + TV']>;
+    myThoughts: Schema.Attribute.Text & Schema.Attribute.Required;
+    rating: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    trailerLink: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 

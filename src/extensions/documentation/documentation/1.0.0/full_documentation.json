@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2026-01-18T20:11:32.846Z"
+    "x-generation-date": "2026-01-19T00:45:51.992Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -8741,17 +8741,17 @@
           "id": {
             "type": "number"
           },
-          "Title": {
+          "title": {
             "type": "string"
           },
-          "ListType": {
+          "listType": {
             "type": "string",
             "enum": [
               "Book",
               "Film + TV"
             ]
           },
-          "Image": {
+          "image": {
             "type": "object",
             "properties": {
               "id": {
@@ -8880,22 +8880,39 @@
               }
             }
           },
-          "Blurb": {
+          "blurb": {
             "type": "string"
           },
-          "MyThoughts": {
+          "myThoughts": {
             "type": "string"
           },
-          "Content": {
+          "content": {
             "type": "string"
           },
-          "TrailerLink": {
+          "trailerLink": {
             "type": "string"
           },
           "availableOn": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ElementAvailableOnComponent"
+            }
+          },
+          "rating": {
+            "type": "string"
+          },
+          "genres": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number"
+                },
+                "documentId": {
+                  "type": "string"
+                }
+              }
             }
           }
         }

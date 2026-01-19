@@ -5,18 +5,18 @@
   },
   "options": {},
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "ListType": {
+    "listType": {
       "type": "enumeration",
       "enum": [
         "Book",
         "Film + TV"
       ]
     },
-    "Image": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -27,7 +27,7 @@
         "audios"
       ]
     },
-    "Blurb": {
+    "blurb": {
       "type": "text",
       "conditions": {
         "visible": {
@@ -41,7 +41,7 @@
       },
       "required": true
     },
-    "MyThoughts": {
+    "myThoughts": {
       "type": "text",
       "conditions": {
         "visible": {
@@ -55,7 +55,7 @@
       },
       "required": true
     },
-    "Content": {
+    "content": {
       "type": "text",
       "conditions": {
         "visible": {
@@ -69,7 +69,7 @@
       },
       "required": true
     },
-    "TrailerLink": {
+    "trailerLink": {
       "type": "string",
       "conditions": {
         "visible": {
@@ -87,6 +87,15 @@
       "type": "component",
       "component": "element.available-on",
       "repeatable": true
+    },
+    "rating": {
+      "type": "string",
+      "required": true
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre"
     }
   },
   "config": {}
