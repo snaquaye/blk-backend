@@ -8,7 +8,7 @@ export default (config: UserConfig) => {
       },
     },
     server: {
-      allowedHosts: ['admin.everythingblk.com', 'localhost'],
+      allowedHosts: true,
     },
   });
 };
