@@ -19,7 +19,7 @@
     },
     "rating": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "genre": {
       "type": "string",
@@ -27,7 +27,7 @@
     },
     "blurb": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "literaryTropes": {
       "type": "component",
@@ -36,7 +36,7 @@
     },
     "initialReaction": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "finalReview": {
       "type": "string"

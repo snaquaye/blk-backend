@@ -33,13 +33,13 @@
         "visible": {
           "==": [
             {
-              "var": "ListType"
+              "var": "listType"
             },
             "Book"
           ]
         }
       },
-      "required": true
+      "required": false
     },
     "myThoughts": {
       "type": "text",
@@ -47,13 +47,13 @@
         "visible": {
           "==": [
             {
-              "var": "ListType"
+              "var": "listType"
             },
             "Book"
           ]
         }
       },
-      "required": true
+      "required": false
     },
     "content": {
       "type": "text",
@@ -61,13 +61,13 @@
         "visible": {
           "==": [
             {
-              "var": "ListType"
+              "var": "listType"
             },
             "Film + TV"
           ]
         }
       },
-      "required": true
+      "required": false
     },
     "trailerLink": {
       "type": "string",
@@ -75,13 +75,13 @@
         "visible": {
           "==": [
             {
-              "var": "ListType"
+              "var": "listType"
             },
             "Film + TV"
           ]
         }
       },
-      "required": true
+      "required": false
     },
     "availableOn": {
       "type": "component",
@@ -90,7 +90,7 @@
     },
     "rating": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "genres": {
       "type": "relation",

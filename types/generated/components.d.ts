@@ -66,16 +66,16 @@ export interface ElementFilmTvBooksList extends Struct.ComponentSchema {
   };
   attributes: {
     availableOn: Schema.Attribute.Component<'element.available-on', true>;
-    blurb: Schema.Attribute.Text & Schema.Attribute.Required;
-    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    blurb: Schema.Attribute.Text;
+    content: Schema.Attribute.Text;
     genres: Schema.Attribute.Relation<'oneToMany', 'api::genre.genre'>;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
       Schema.Attribute.Required;
     listType: Schema.Attribute.Enumeration<['Book', 'Film + TV']>;
-    myThoughts: Schema.Attribute.Text & Schema.Attribute.Required;
-    rating: Schema.Attribute.String & Schema.Attribute.Required;
+    myThoughts: Schema.Attribute.Text;
+    rating: Schema.Attribute.String;
     title: Schema.Attribute.String & Schema.Attribute.Required;
-    trailerLink: Schema.Attribute.String & Schema.Attribute.Required;
+    trailerLink: Schema.Attribute.String;
   };
 }
 
@@ -154,12 +154,12 @@ export interface ElementReview extends Struct.ComponentSchema {
     displayName: 'Review';
   };
   attributes: {
-    blurb: Schema.Attribute.Text & Schema.Attribute.Required;
+    blurb: Schema.Attribute.Text;
     finalReview: Schema.Attribute.String;
     genre: Schema.Attribute.String & Schema.Attribute.Required;
-    initialReaction: Schema.Attribute.Text & Schema.Attribute.Required;
+    initialReaction: Schema.Attribute.Text;
     literaryTropes: Schema.Attribute.Component<'element.literary-tropes', true>;
-    rating: Schema.Attribute.String & Schema.Attribute.Required;
+    rating: Schema.Attribute.String;
     reviewType: Schema.Attribute.Enumeration<['Book', 'Film  + TV']> &
       Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;

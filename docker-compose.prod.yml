@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   everythingblk:
     container_name: everythingblk

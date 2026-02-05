@@ -21,7 +21,7 @@ export default {
     // Run seed if SEED_DATA environment variable is set to 'true'
     if (process.env.SEED_DATA === 'true') {
       console.log('🌱 Seeding database...');
-      await seed(strapi);
+      // await seed(strapi);
     } else {
       console.log('ℹ️  Skipping seed (SEED_DATA is not "true")');
     }

@@ -37,14 +37,28 @@
         "Review Post"
       ]
     },
-    "coverImage": {
-      "type": "component",
-      "component": "element.cover-image",
-      "repeatable": true,
-      "required": true
-    },
     "shortDescription": {
       "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     },
     "excerpt": {
       "type": "text",

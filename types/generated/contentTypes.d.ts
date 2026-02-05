@@ -452,8 +452,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     category: Schema.Attribute.Enumeration<['Books', 'Culture', 'Film + TV']> &
       Schema.Attribute.Required;
     content: Schema.Attribute.Blocks;
-    coverImage: Schema.Attribute.Component<'element.cover-image', true> &
-      Schema.Attribute.Required;
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -476,6 +477,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     shortDescription: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'articleTitle'> & Schema.Attribute.Required;
     tags: Schema.Attribute.Relation<'manyToMany', 'api::tag.tag'>;
+    thumbnail: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     trailerLink: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -629,35 +631,6 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::homepage.homepage'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiListItemListItem extends Struct.CollectionTypeSchema {
-  collectionName: 'list_items';
-  info: {
-    displayName: 'Movie/Book List';
-    pluralName: 'list-items';
-    singularName: 'list-item';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    Items: Schema.Attribute.Component<'element.list-item', true>;
-    ListName: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::list-item.list-item'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1331,7 +1304,6 @@ declare module '@strapi/strapi' {
       'api::genre.genre': ApiGenreGenre;
       'api::global.global': ApiGlobalGlobal;
       'api::homepage.homepage': ApiHomepageHomepage;
-      'api::list-item.list-item': ApiListItemListItem;
       'api::page.page': ApiPagePage;
       'api::plateform.plateform': ApiPlateformPlateform;
       'api::subscription.subscription': ApiSubscriptionSubscription;
